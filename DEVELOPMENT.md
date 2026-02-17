@@ -38,6 +38,21 @@ When you make changes to `popup.js` or `styles.css`:
 - You can set breakpoints directly in VS Code in `popup.js`.
 - Or, right-click the extension popup and choose **Inspect** to use Chrome DevTools.
 
+## Building for Production
+
+To create a production build (a `.zip` file ready for upload to the Chrome Web Store):
+
+1.  Run the following command:
+
+    ```bash
+    npm run build
+    ```
+
+2.  This will create a `dist` folder in your project directory containing the `.zip` file.
+3.  Upload this `.zip` file to the Chrome Web Store Developer Dashboard.
+
+Note: The build process automatically excludes `node_modules` and other development files.
+
 ## Troubleshooting
 
 - If the extension doesn't load, check the `chrome://extensions` page for any error messages in the "Errors" button.

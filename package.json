@@ -5,7 +5,8 @@
   "main": "popup.js",
   "scripts": {
     "test": "jest",
-    "dev": "web-ext run --target=chromium"
+    "dev": "web-ext run --target=chromium",
+    "build": "web-ext build --artifacts-dir=dist --overwrite-dest"
   },
   "repository": {
     "type": "git",
