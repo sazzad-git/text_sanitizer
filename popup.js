@@ -99,6 +99,7 @@ let inputText,
   sanitizeBtn,
   copyBtn,
   customBtn,
+  profileBtn,
   wordList,
   newWordInput,
   newReplacementInput,
@@ -112,6 +113,7 @@ if (typeof document !== "undefined") {
   sanitizeBtn = document.getElementById("sanitizeBtn");
   copyBtn = document.getElementById("copyBtn");
   customBtn = document.getElementById("customBtn");
+  profileBtn = document.getElementById("profileBtn");
   wordList = document.getElementById("wordList");
   newWordInput = document.getElementById("newWord");
   newReplacementInput = document.getElementById("newReplacement");
@@ -330,18 +332,38 @@ function setupEventListeners() {
       return;
     }
 
-    const greeting = "Hello there,\nI hope you are doing well.\n\n";
-    const closing = "\n\nThank you";
+    const separator = "===========================================\n";
+    const greeting = separator + "Hello there,\nI hope you are doing well.\n\n";
+    const closing = "\n\nThank you\n" + separator.trim();
 
     // Prevent double adding
     if (
-      currentText.startsWith("Hello there,") &&
-      currentText.endsWith("Thank you")
+      currentText.startsWith(separator + "Hello there,") &&
+      currentText.endsWith("Thank you\n" + separator.trim())
     ) {
       return;
     }
 
     outputText.value = greeting + currentText + closing;
+  });
+
+  // Profile button
+  profileBtn.addEventListener("click", () => {
+    const currentText = outputText.value;
+    const profileTemplate =
+      "Profile:\nClient Name:\nOrder ID:\nQuality Check: \n\n\n";
+
+    // Prevent double adding if starts with "Profile:"
+    if (currentText.startsWith("Profile:")) {
+      return;
+    }
+
+    // If there is existing text, prepend the template
+    if (currentText) {
+      outputText.value = profileTemplate + currentText;
+    } else {
+      outputText.value = profileTemplate;
+    }
   });
 
   // Tab switching
