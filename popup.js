@@ -93,16 +93,32 @@ const DEFAULT_WORDS = {
 };
 
 // DOM elements
-const inputText = document.getElementById("inputText");
-const outputText = document.getElementById("outputText");
-const sanitizeBtn = document.getElementById("sanitizeBtn");
-const copyBtn = document.getElementById("copyBtn");
-const wordList = document.getElementById("wordList");
-const newWordInput = document.getElementById("newWord");
-const newReplacementInput = document.getElementById("newReplacement");
-const addWordBtn = document.getElementById("addWordBtn");
-const tabButtons = document.querySelectorAll(".tab-btn");
-const tabContents = document.querySelectorAll(".tab-content");
+// DOM elements
+let inputText,
+  outputText,
+  sanitizeBtn,
+  copyBtn,
+  customBtn,
+  wordList,
+  newWordInput,
+  newReplacementInput,
+  addWordBtn,
+  tabButtons,
+  tabContents;
+
+if (typeof document !== "undefined") {
+  inputText = document.getElementById("inputText");
+  outputText = document.getElementById("outputText");
+  sanitizeBtn = document.getElementById("sanitizeBtn");
+  copyBtn = document.getElementById("copyBtn");
+  customBtn = document.getElementById("customBtn");
+  wordList = document.getElementById("wordList");
+  newWordInput = document.getElementById("newWord");
+  newReplacementInput = document.getElementById("newReplacement");
+  addWordBtn = document.getElementById("addWordBtn");
+  tabButtons = document.querySelectorAll(".tab-btn");
+  tabContents = document.querySelectorAll(".tab-content");
+}
 
 // Initialize extension
 async function init() {
@@ -300,6 +316,34 @@ function setupEventListeners() {
   // Copy button
   copyBtn.addEventListener("click", copyToClipboard);
 
+  // Custom Greeting button
+  customBtn.addEventListener("click", () => {
+    const currentText = outputText.value;
+    if (!currentText) {
+      if (inputText.value) {
+        // Auto-sanitize if input exists but output doesn't
+        sanitizeBtn.click();
+        setTimeout(() => customBtn.click(), 50);
+        return;
+      }
+      alert("Please sanitize some text first!");
+      return;
+    }
+
+    const greeting = "Hello there,\nI hope you are doing well.\n\n";
+    const closing = "\n\nThank you";
+
+    // Prevent double adding
+    if (
+      currentText.startsWith("Hello there,") &&
+      currentText.endsWith("Thank you")
+    ) {
+      return;
+    }
+
+    outputText.value = greeting + currentText + closing;
+  });
+
   // Tab switching
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -343,12 +387,14 @@ function setupEventListeners() {
 }
 
 // Initialize when DOM is ready
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 }
 
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { sanitizeText, DEFAULT_WORDS };
 }
