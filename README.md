@@ -1,66 +1,77 @@
 # Text Sanitizer Pro - Chrome Extension
 
-A Chrome Extension (Manifest V3) that sanitizes text by replacing restricted words with safe alternatives.
-
-## Installation
-
-1. Open Chrome and navigate to `chrome://extensions/`
-2. Enable "Developer mode" (toggle in the top right)
-3. Click "Load unpacked"
-4. Select the folder containing the extension files
-
-## Usage
-
-1. Click the extension icon in your Chrome toolbar
-2. Paste your text into the "Input Text" textarea
-3. Click the "Sanitize" button
-4. The sanitized output will appear in the "Sanitized Output" textarea
-5. Click "Copy to Clipboard" to copy the sanitized text
-
-## Adding New Words
-
-To add custom word mappings:
-
-1. Click the "Settings" section header to expand it
-2. In the "Add New Word" form:
-   - Enter the original word (e.g., "payment")
-   - Enter the replacement (e.g., "pa_yment")
-3. Click "Add Word"
-4. The word will be saved and used for future sanitizations
-
-## Managing Words
-
-- **View all words**: Expand the Settings section to see all restricted words and their replacements
-- **Delete a word**: Click the "Delete" button next to any word in the list
-
-## Default Words
-
-The extension comes with these default word mappings:
-- `payment` → `pa_yment`
-- `email` → `ema_il`
-- `whatsapp` → `wha_tsapp`
-- `skype` → `sky_pe`
+A professional Chrome Extension (Manifest V3) that sanitizes text by replacing restricted words with safe alternatives. Designed to help users communicate safely on platforms with strict keyword policies.
 
 ## Features
 
-- Case-insensitive word matching
-- Preserves original case in replacements
-- Dark/light mode support (follows system preferences)
-- Word mappings synced across devices via Chrome sync
-- Clean, modern UI
+- **🛡️ Text Sanitization**: Automatically replaces restricted words (e.g., "payment" -> "pa_yment", "email" -> "ema_il").
+- **✨ Smart Case Preservation**: Maintains the original capitalization of words (e.g., "Payment" -> "Pa_yment").
+- **👋 Custom Greetings**: Add a professional greeting and closing with significant one-click ease.
+- **📋 One-Click Copy**: Instantly copy the sanitized text to your clipboard.
+- **⚙️ Custom Word Management**: Add, view, and delete your own restricted words and replacements.
+- **🌗 Dark/Light Mode**: Automatically adapts to your system's color scheme.
+- **🔄 Sync**: Your custom words are synced across all your Chrome devices.
 
-## Generating Icons
+## Installation
 
-The extension needs icon files (`icon16.png`, `icon48.png`, `icon128.png`). You have two options to generate them:
+### For Users (Development Mode)
 
-### Option 1: Using the HTML Generator (Recommended)
-1. Open `generate-icons.html` in your web browser
-2. Click each "Download" button to save the icons
-3. Save all three PNG files in your extension folder
+1.  Clone or download this repository.
+2.  Open Chrome and navigate to `chrome://extensions/`.
+3.  Enable **"Developer mode"** (toggle in the top right corner).
+4.  Click **"Load unpacked"**.
+5.  Select the folder containing the extension files (the root of this project).
 
-### Option 2: Using Python Script
-1. Install Pillow: `pip install Pillow`
-2. Run: `python generate_icons.py`
-3. The icons will be generated automatically in your extension folder
+### For Developers
 
-The icons feature a modern shield design with a checkmark, matching the extension's security/sanitization theme with a purple gradient background.
+1.  Ensure you have [Node.js](https://nodejs.org/) installed.
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Run the development server (auto-reloads on change):
+    ```bash
+    npm run dev
+    ```
+    This will launch a new Chromium instance with the extension loaded.
+
+Build Instructions
+
+To create a production-ready ZIP file for the Chrome Web Store:
+
+1.  Run the build command:
+    ```bash
+    npm run build
+    ```
+2.  This creates a `dist` folder containing a `.zip` file (e.g., `text_sanitizer_pro-1.1.0.zip`).
+3.  Upload this ZIP file to the Chrome Web Store Developer Dashboard.
+
+> **Note:** The build process uses `web-ext` to package the extension. It automatically ignores `node_modules` and other development files to keep the package size small.
+
+## Usage
+
+1.  Click the **Text Sanitizer Pro** icon in your Chrome toolbar.
+2.  Paste your text into the **"Input Text"** area.
+3.  Click **"Sanitize"** to process the text.
+4.  (Optional) Click **"Custom"** (👋) to wrap your text with a standard greeting and closing.
+5.  Click **"Copy"** to copy the result to your clipboard.
+
+## Customization
+
+You can add your own words in the **Settings** tab:
+
+1.  Enter the word to block (e.g., "urgent").
+2.  Enter the safe replacement (e.g., "urg_ent").
+3.  Click **"Add Word"**.
+
+## Project Structure
+
+- `manifest.json`: Configuration file for the Chrome Extension.
+- `popup.html`: The user interface structure.
+- `styles.css`: Styling for the popup (handles dark/light mode).
+- `popup.js`: Core logic for sanitization, UI interaction, and storage.
+- `generate-icons.html`: Helper tool to generate extension icons.
+
+## License
+
+ISC

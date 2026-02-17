@@ -1,6 +1,6 @@
 {
   "name": "text-sanitizer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Chrome Extension (Manifest V3) that sanitizes text by replacing restricted words with safe alternatives.",
   "main": "popup.js",
   "scripts": {
