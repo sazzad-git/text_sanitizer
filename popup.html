@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Sanitizer Pro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-content">
+        <div class="logo-icon">🛡️</div>
+        <h1>Text Sanitizer Pro</h1>
+      </div>
+    </header>
+
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="sanitize">
+          <span class="tab-icon">✨</span>
+          <span>Sanitize</span>
+        </button>
+        <button class="tab-btn" data-tab="settings">
+          <span class="tab-icon">⚙️</span>
+          <span>Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <main>
+      <!-- Sanitize Tab -->
+      <div id="sanitizeTab" class="tab-content active">
+        <section class="input-section">
+          <div class="section-header">
+            <label for="inputText">
+              <span class="label-icon">📝</span>
+              Input Text
+            </label>
+          </div>
+          <textarea id="inputText" placeholder="Paste your text containing restricted words here..."></textarea>
+        </section>
+
+        <section class="button-section">
+          <button id="sanitizeBtn" class="btn btn-primary">
+            <span class="btn-icon">✨</span>
+            <span>Sanitize</span>
+          </button>
+          <button id="copyBtn" class="btn btn-secondary">
+            <span class="btn-icon">📋</span>
+            <span>Copy</span>
+          </button>
+        </section>
+
+        <section class="output-section">
+          <div class="section-header">
+            <label for="outputText">
+              <span class="label-icon">✅</span>
+              Sanitized Output
+            </label>
+          </div>
+          <textarea id="outputText" readonly placeholder="Your sanitized text will appear here..."></textarea>
+        </section>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="settingsTab" class="tab-content">
+        <div class="settings-content">
+          <div class="word-list">
+            <h3>
+              <span class="section-icon">🔒</span>
+              Restricted Words
+            </h3>
+            <div id="wordList" class="word-list-items"></div>
+          </div>
+          
+          <div class="add-word-form">
+            <h3>
+              <span class="section-icon">➕</span>
+              Add New Word
+            </h3>
+            <div class="form-group">
+              <label for="newWord">Original Word</label>
+              <input type="text" id="newWord" placeholder="e.g., payment" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="newReplacement">Replacement</label>
+              <input type="text" id="newReplacement" placeholder="e.g., pa_yment" autocomplete="off">
+            </div>
+            <button id="addWordBtn" class="btn btn-primary btn-full">
+              <span class="btn-icon">➕</span>
+              <span>Add Word</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
