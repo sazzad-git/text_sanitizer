@@ -348,3 +348,7 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { sanitizeText, DEFAULT_WORDS };
+}
